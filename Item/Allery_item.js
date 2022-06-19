@@ -7,7 +7,7 @@ import { View, Image, TextInput, TouchableOpacity, Button, StyleSheet, Text } fr
 import { Context } from "../contextv/DetailContext";
 
 const Allery_item = function ({ show }) {
- console.log(show)
+
  return (
 
   <View style={{

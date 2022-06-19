@@ -10,7 +10,7 @@ export default () => {
 
 
     const MS_good = () => {
-        setmisu(Math.floor(Math.random() * 100));
+        setmisu(Math.floor(Math.random() * 1000));
         return;
 
     }

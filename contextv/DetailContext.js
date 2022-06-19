@@ -1,18 +1,36 @@
 
 //import { Commands } from "react-native/Libraries/Components/RefreshControl/AndroidSwipeRefreshLayoutNativeComponent";
 import BigContext from "./BigContext";
-//import { AsyncStorage } from 'react-native';
+import { AsyncStorage } from 'react-native';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
-import token from "../component/token";
+
 import axios from "axios";
 import React, { useState, useContext, useEffect } from "react"
 const initialstate = function (state, action) {
 
     switch (action.type) {
+        case 'im_Si_item': {
+            return [...state, {
+
+                name: action.item.kr,
+                company: action.item.company,
+                src: action.item.src,
+                item: action.item.item
+
+
+                //number: Math.floor(Math.random() * 999)
+            }]
+
+        }
+        case 'die': {
+            state.length = 0;
+            console.log(state)
+
+        }
 
         case 'add_component':
             {
-
+                console.log(action.item)
 
                 return [...state, {
 
@@ -78,19 +96,36 @@ const initialstate = function (state, action) {
         case 'tokevn': {
             return [...state, {
 
-                token: action.payload
+                id: action.id,
+                password: action.password
             }]
 
         }
 
 
+        case 'delete_all': {
 
+            var hey = state
+            console.log(hey)
+            return state = [];
+        }
 
 
     }
 
 }
 
+const die = (dispatch) => {
+
+    return () => {
+        dispatch({
+            type: 'die'
+
+        })
+
+    }
+
+}
 const add_component = (dispatch) => {
 
     return (item) => {
@@ -158,48 +193,12 @@ const put_state = (dispatch) => {
 
 }
 
+const im_Si_item = (dispatch) => {
 
-
-
-const tokevn = (dispatch) => {
-
-    return async (id, password) => {
-        console.log('TOKEDN', id, password)
-        const bol_check = 0;
-
-
-        try {
-            axios.post("http://182.215.108.120:5000/auth/login", {
-                useId: id,
-                password: password
-            })
-                .then((response) => {
-                    if (response) {
-                        console.log('?? first');
-                        console.log(response.data)
-                        bol_check = (response.data);
-
-                        //setUser(response);
-                    } else {
-                        alert("failed to ");
-                    }
-                }).catch((err) => {
-                    console.log(err.message);
-                    console.log(err)
-                    console.log('?');
-                });
-        }
-        catch (err) {
-            console.log(err.message);
-
-        }
-        console.log(bol_check);
-        await AsyncStorage.setItem('token', bol_check.token);
+    return (item) => {
         dispatch({
-
-
-            type: 'tokevn',
-            payload: bol_check.token
+            type: 'im_Si_item',
+            item: item
 
         })
 
@@ -208,5 +207,41 @@ const tokevn = (dispatch) => {
 }
 
 
+const tokevn = (dispatch) => {
 
-export const { Context, Provider } = BigContext(initialstate, { tokevn, add_nickname, put_state, set_state, add_password, add_component, add_id }, []);
+
+    return (id, password) => {
+
+        dispatch({
+
+            type: 'tokevn',
+            id: id,
+            password: password
+
+        })
+    }
+
+
+
+}
+
+const delete_all = (dispatch) => {
+
+
+    return () => {
+
+        dispatch({
+
+            type: 'delete_all',
+
+
+        })
+    }
+
+
+
+}
+
+
+
+export const { Context, Provider } = BigContext(initialstate, { delete_all, tokevn, die, im_Si_item, add_nickname, put_state, set_state, add_password, add_component, add_id }, []);

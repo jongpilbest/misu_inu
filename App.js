@@ -13,6 +13,7 @@ import nickname from "./signup/nickname";
 import Barcode from "./component/barCode";
 import Item_list from "./Item/Item_list";
 import Item_inner from "./Item/Item_inner";
+import Mypage_main from "./Mypage/Mypage_main";
 const navigator = createStackNavigator({
   index: indexScreen,
   Edit: Edit,
@@ -24,7 +25,8 @@ const navigator = createStackNavigator({
   Barcode: Barcode,
   ingredient: ingredient,
   Item_list: Item_list,
-  Item_inner: Item_inner
+  Item_inner: Item_inner,
+  Mypage_main: Mypage_main
 
 }, {
   initialRouteName: 'index'

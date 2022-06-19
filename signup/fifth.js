@@ -18,7 +18,7 @@ const fifth = function ({ navigation }) {
     const [MS_good, misu] = Ms();
     // const [chna, mos_original] = fian();
     //console.log(misu);
-  //  console.log('에러십활')
+    //  console.log('에러십활')
     console.log(Context._currentValue.state)
     var mos = (Context._currentValue.state).slice(0, 17);
     // console.log(mos, chekc)
@@ -35,8 +35,9 @@ const fifth = function ({ navigation }) {
 
         }
 
+        console.log(mos)
         chek = mos.filter(evlv => {
-            return evlv.name == el
+            return evlv.kr == el
         })
         //console.log(`chek ${chek}`)
 

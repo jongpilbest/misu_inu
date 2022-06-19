@@ -7,7 +7,7 @@ import { Context } from '../contextv/DetailContext'
 
 
 const indexScreen = ({ navigation }) => {
-
+    const { delete_all } = useContext(Context);
 
     return (
         <View>
@@ -28,6 +28,25 @@ const indexScreen = ({ navigation }) => {
             <TouchableOpacity onPress={() => navigation.navigate('Item_list')}>
                 <Text style={{ fontSize: 40 }}>
                     아이템 리스트
+                </Text>
+
+
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                console.log(Context._currentValue)
+
+                delete_all()
+                console.log(Context._currentValue)
+            }}>
+                <Text style={{ fontSize: 40 }}>
+                    다지울수 있냥고
+                </Text>
+
+
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Mypage_main')}>
+                <Text style={{ fontSize: 40 }}>
+                    마이페이지
                 </Text>
 
 

@@ -38,7 +38,7 @@ const ingredient = function ({ navigation }) {
     }
 
     chek = mos.filter(evlv => {
-      return evlv.name == el
+      return evlv.kr == el
     })
     console.log(`chek ${chek}`)
 

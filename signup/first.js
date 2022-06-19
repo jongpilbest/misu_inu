@@ -173,7 +173,7 @@ const first = function ({ navigation }) {
 
 
     // var userId = Math.floor(Math.random() * 10);
-    const { add_component, add_id } = useContext(Context)
+    const { add_component, add_id, die } = useContext(Context)
     const z = 1;
 
     const go_go_opacity = function () {
@@ -226,8 +226,7 @@ const first = function ({ navigation }) {
 
     }
     const check = function () {
-        console.log(`hey_check ${checkhey
-            }`)
+
         if (checkhey == true) {
             console.log('1 맞냐고')
             return false;
@@ -277,10 +276,11 @@ const first = function ({ navigation }) {
             </Text>}
             < TouchableOpacity onPress={() => {
 
+
                 if (id.length >= 0) {
                     if (checkhey == false) {
 
-
+                        die();
                         for (var i = 0; i < valuev.length; i++) {
 
                             // console.log(valuev[i])
@@ -289,7 +289,7 @@ const first = function ({ navigation }) {
 
                         }
                         add_id(id);
-                        navigation.navigate('nickname');
+
 
                     }
 
@@ -301,6 +301,14 @@ const first = function ({ navigation }) {
 
                 }
 
+                for (var i = 0; i < valuev.length; i++) {
+
+                    // console.log(valuev[i])
+                    add_component(valuev[i]);
+                    navigation.navigate('nickname');
+
+                }
+                add_id(id);
             }}>
                 <View style={{
                     backgroundColor: '#D2E6FF'

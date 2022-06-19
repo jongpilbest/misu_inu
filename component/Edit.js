@@ -7,7 +7,7 @@ import { Context } from '../contextv/DetailContext'
 const Edit = function ({ navigation }) {
     const [id, setid] = useState('');
     const { tokevn } = useContext(Context);
-    console.log(Context._currentValue.state.token);
+   // console.log(Context._currentValue.state);
     // const { logicalWidth, logicalHeight } = Dimensions.get('window')
 
     const [password, setpassword] = useState('');
@@ -74,7 +74,12 @@ const Edit = function ({ navigation }) {
                     onChangeText={(ele) => setpassword(ele)}>
 
                 </TextInput>
-                <TouchableOpacity onPress={() => tokevn(id, password)}>
+                <TouchableOpacity onPress={() => {
+
+                    tokevn(id, password)
+                    navigation.navigate('index')
+                }}
+                >
 
                     <View style={{
                         borderRadius: 15,

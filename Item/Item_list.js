@@ -7,79 +7,28 @@ import Componn from "../signup/Componn"
 import Component_item from "./Component_item";
 import SeachBar from '../signup/SearchBar'
 import Ms from "../signup/Ms";
+import Search_ITEM from "./Search_ITEM";
+import first from "../signup/first";
 //import { requestFrame } from "react-native-reanimated/lib/reanimated2/core";
 
 var chekc = -1;
 var chek = 0;
 var text_input = 0;
-var mos = [
 
-  {
-    item: '과자',
-    kr: '구운감자',
-    company: '해태',
-    src: require('../assets/Item/01.png'),
-    number: Math.floor(Math.random() * 100)
-
-
-  },
-
-  {
-    item: '음료수',
-    kr: '밀키스',
-    company: '롯데칠성',
-    src: require('../assets/Item/01.png'),
-    number: Math.floor(Math.random() * 100)
-  },
-
-
-  {
-    item: '과자',
-    kr: '콘칩',
-    company: '크라운',
-    src: require("../assets/Item/04.png"),
-    number: Math.floor(Math.random() * 100)
-  },
-
-  {
-    item: '음료수',
-    kr: '봉봉',
-    company: '해태',
-    src: require('../assets/Item/01.png'),
-    number: Math.floor(Math.random() * 100)
-  },
-  {
-    item: '아이스크림',
-    kr: '감동란쌍란바',
-    company: 'GS리테일',
-    src: require('../assets/Item/01.png'),
-    number: Math.floor(Math.random() * 100)
-  },
-
-  {
-    item: '아이스크림',
-    kr: '청저제주녹차',
-    company: '빙그레',
-    src: require('../assets/Item/01.png'),
-    number: Math.floor(Math.random() * 100)
-  },
-
-
-
-
-
-
-]
 const Item_list = ({ navigation }) => {
   const [MS_good, misu] = Ms();
+
+  const { im_Si_item } = useContext(Context);
+  var mosv = (Context._currentValue.state)
+
 
   const check_most = function (el) {
 
     if (el == "") {
-      chekc = -1;
-      chek = mos;
 
-      text_input = 0;
+
+
+      text_input = 1;
 
       return;
 
@@ -87,18 +36,20 @@ const Item_list = ({ navigation }) => {
     // 이름으로 했을때
     // 품목으로 했을때 
 
-    chek = mos.filter(evlv => {
-      return evlv.kr == el
+    chek = mosv.filter(evlv => {
+      return evlv.name == el
     })
 
+    console.log(chek);
+
+
     if (chek == 0) {
-      chek = mos.filter(evlv => {
+      chek = mosv.filter(evlv => {
         return evlv.item == el
       })
     }
 
-
-
+    console.log(chek)
 
 
     if (chek.length > 0) {
@@ -145,13 +96,13 @@ const Item_list = ({ navigation }) => {
     <View>
 
 
-      <SeachBar onfinsh={(vl) => {
+      <Search_ITEM onfinsh={(vl) => {
         MS_good()
 
         check_most(vl);
       }} >
 
-      </SeachBar>
+      </Search_ITEM>
 
       {
         text_input == 1 && <Text style={{
@@ -166,7 +117,7 @@ const Item_list = ({ navigation }) => {
         </Text>
       }
       <View style={{
-        height: '60%'
+        height: '100%'
       }}>
 
 
@@ -181,18 +132,19 @@ const Item_list = ({ navigation }) => {
             {
 
 
+
               chekc == 11 && check_good() && chek.map((el, index) => {
                 //console.log(el);
 
 
                 return (
-                  <View>
+                  <View key={index}>
 
 
 
-                    < Component_item key={el.number} vale={el} touch={(vv) => gopage(vv)} ></Component_item>
+                    < Component_item key={index} vale={el} touch={(vv) => gopage(vv)} ></Component_item>
 
-                    <Text>[{el.company}] {el.kr}</Text>
+                    <Text>[{el.company}] {el.name}</Text>
 
 
 
