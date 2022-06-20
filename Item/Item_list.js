@@ -19,7 +19,7 @@ const Item_list = ({ navigation }) => {
   const [MS_good, misu] = Ms();
 
   const { im_Si_item } = useContext(Context);
-  var mosv = (Context._currentValue.state)
+  //var mosv = (Context._currentValue.state)
 
 
   const check_most = function (el) {

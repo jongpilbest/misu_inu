@@ -1,7 +1,10 @@
 
 import React, { useState, useContext, useEffect } from "react"
-import { View, ScrollView, TextInput, TouchableOpacity, Button, StyleSheet, Text } from "react-native"
+import { View, ScrollView, TextInput, TouchableOpacity, Image, Button, StyleSheet, Text } from "react-native"
 import { Context } from "../contextv/DetailContext";
+import * as ImagePicker from 'expo-image-picker';
+import { Pressable } from 'react-native';
+import Modal from "react-native-modal";
 
 
 
@@ -12,6 +15,37 @@ import { Context } from "../contextv/DetailContext";
 
 
 const Mypage_main = function ({ navigation }) {
+
+
+ const [modalVisible, setModalVisible] = useState(false);
+ const [imageUrl, setImageUrl] = useState('h');
+ // 권한 요청을 위한 hooks
+ const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
+ const uploadImage = async () => {
+  // 권한 확인 코드: 권한 없으면 물어보고, 승인하지 않으면 함수 종료
+  if (!status?.granted) {
+   const permission = await requestPermission();
+   if (!permission.granted) {
+    return null;
+   }
+  }
+  // 이미지 업로드 기능
+  const result = await ImagePicker.launchImageLibraryAsync({
+   mediaTypes: ImagePicker.MediaTypeOptions.Images,
+   allowsEditing: false,
+   quality: 1,
+   aspect: [1, 1]
+  });
+  if (result.cancelled) {
+   return null; // 이미지 업로드 취소한 경우
+  }
+  // 이미지 업로드 결과 및 이미지 경로 업데이트
+  console.log('이미지 화깅ㄴ')
+  console.log(result);
+
+  setImageUrl(result.uri);
+ };
+
  const { delete_all } = useContext(Context);
  console.log(Context._currentValue.state);
  var hey_your_name = Context._currentValue.state[0];
@@ -23,9 +57,32 @@ const Mypage_main = function ({ navigation }) {
  console.log(name)
  return (
 
+
   <View style={{
    flex: 1
   }}>
+   <Modal
+    animationType="slide"
+    transparent={true}
+    visible={modalVisible}
+    onRequestClose={() => {
+     Alert.alert("Modal has been closed.");
+     setModalVisible(!modalVisible);
+    }}>
+    <View style={styles.centeredView}>
+     <View style={styles.modalView}>
+
+      <Pressable
+       style={[styles.button, styles.buttonClose]}
+       onPress={() => setModalVisible(!modalVisible)}
+      >
+
+      </Pressable>
+     </View>
+
+    </View>
+   </Modal>
+
    <View style={{
     backgroundColor: '#D2E6FF',
     flex: 1,
@@ -68,6 +125,7 @@ const Mypage_main = function ({ navigation }) {
       <View style={{
        width: '100%',
 
+
       }}>
 
 
@@ -78,17 +136,37 @@ const Mypage_main = function ({ navigation }) {
         margin: 10,
         borderRadius: '50%',
         position: 'relative'
+
        }}>
+        <Image
+         style={{
+          height: '100%',
+          width: '100%',
+          margin: 0,
+          padding: 0,
+
+          borderRadius: '50%',
+         }}
+         source={{ uri: imageUrl }}
+        />
         <View style={{
-         backgroundColor: "#71A6E3",
-         height: 30,
-         // position: 'absolute',
-         top: 70,
+         position: 'absolute',
          left: 60,
          width: 30,
-         borderRadius: '50%'
-        }}>
 
+         top: 70,
+         margin: 0,
+        }}>
+         <Pressable onPress={uploadImage}>
+          <View style={{
+           backgroundColor: "#71A6E3",
+           height: 30,
+
+           borderRadius: '50%'
+          }}>
+
+          </View>
+         </Pressable>
         </View>
        </View>
 
@@ -192,7 +270,8 @@ const Mypage_main = function ({ navigation }) {
 
     }}>
      <TouchableOpacity onPress={() => {
-      delete_all()
+      setModalVisible(true)
+      //delete_all()
      }} >
 
 
@@ -218,24 +297,61 @@ const Mypage_main = function ({ navigation }) {
  )
 }
 
-const style = StyleSheet.create({
- text: {
-  width: 200,
-  height: 40,
-  borderColor: "black"
+const styles = StyleSheet.create({
+ centeredView: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  marginTop: 22
  },
+ modalView: {
+  width: '80%',
+  height: '60%',
+  margin: 20,
+  backgroundColor: "#545252",
+  opacity: 0.96,
 
- border: {
-  width: '85%',
-  height: 50,
-  borderColor: '#D2D2D2',
-  borderWidth: 3,
-  margin: 10,
   borderRadius: 20,
-  marginLeft: '3%',
-  marginLeft: 15,
-  marginTop: '5%',
+  padding: 35,
+  //alignItems: "center",
+  shadowColor: "#000",
+  shadowOffset: {
+   width: 0,
+   height: 2
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 4,
+  elevation: 5
+ },
+ button: {
+  borderRadius: 20,
+  padding: 10,
+  elevation: 2
+ },
+ buttonOpen: {
+  backgroundColor: "#545252",
+ },
+ buttonClose: {
+  backgroundColor: "#545252",
+ },
+ textStyle: {
+  color: "white",
+  fontWeight: "bold",
+  fontSize: 20
 
+ },
+ modalText: {
+  marginBottom: 15,
+  textAlign: "center",
+  fontSize: 30,
+  color: '#71A6E3'
+
+ },
+ modalTextv: {
+  marginBottom: 15,
+
+  fontSize: 30,
+  color: '#71A6E3'
 
  }
 

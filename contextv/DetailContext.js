@@ -210,7 +210,36 @@ const im_Si_item = (dispatch) => {
 const tokevn = (dispatch) => {
 
 
+
+
+
+
+
     return (id, password) => {
+
+        axios.post("http://14.39.156.197:5000/auth/login", {
+
+            "userId": id,
+            "password": password
+
+
+        })
+            .then((response) => {
+                if (response) {
+                    console.log('?? first');
+                    console.log(response.data)
+                    //setcheck(response.data);
+
+                    //setUser(response);
+                } else {
+                    alert("failed to ");
+                }
+            }).catch((err) => {
+                console.log(err.message);
+                console.log(err)
+                console.log('?');
+            });
+
 
         dispatch({
 
