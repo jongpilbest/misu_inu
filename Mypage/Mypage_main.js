@@ -71,25 +71,81 @@ const Mypage_main = function ({ navigation }) {
     }}>
     <View style={styles.centeredView}>
      <View style={styles.modalView}>
+      <Text style={{
+       color: '#71A6E3',
+       fontSize: 23,
+       textAlign: 'center'
+      }}>
+       로그아웃 하시겠습니까?
+      </Text>
+      <View style={{
+       flexDirection: 'row',
+       marginTop: 20
+      }}>
+       <TouchableOpacity onPress={() => {
+        delete_all()
+       }}>
+        <View style={{
+         width: 100,
+         backgroundColor: '#7C7C7C',
+         height: 30,
+         borderRadius: 20
+        }}>
+         <Text style={{
+          fontSize: 20,
+          color: 'white', fontWeight: 'bold',
+          textAlign: 'center',
+          flexDirection: 'row',
+          margin: 3
+         }}>
+          네
+         </Text>
 
-      <Pressable
-       style={[styles.button, styles.buttonClose]}
-       onPress={() => setModalVisible(!modalVisible)}
-      >
+        </View>
 
-      </Pressable>
+       </TouchableOpacity>
+       <TouchableOpacity onPress={() => {
+        setModalVisible(!modalVisible)
+       }}>
+        <View style={{
+         width: 100,
+         backgroundColor: '#7C7C7C',
+         height: 30,
+         borderRadius: 20,
+         marginLeft: 40
+        }}>
+         <Text style={{
+          fontSize: 20,
+          color: 'white',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          margin: 3
+         }}>
+          아니요
+         </Text>
+        </View>
+
+       </TouchableOpacity>
+      </View>
+
      </View>
 
     </View>
-   </Modal>
+   </Modal >
 
    <View style={{
     backgroundColor: '#D2E6FF',
-    flex: 1,
+    flex: 1.2,
     //eight: '35%'
    }}>
     <Text style={{
-     fontSize: 40
+     fontSize: 58,
+     alignSelf: "center",
+     color: '#7C7C7C',
+     position: 'absolute',
+     top: '40%',
+     left: '5%',
+     marginTop: '5%',
     }}>Mypage</Text>
    </View>
    <View style={{
@@ -292,7 +348,7 @@ const Mypage_main = function ({ navigation }) {
     </View>
 
    </View>
-  </View>
+  </View >
 
  )
 }
@@ -305,8 +361,8 @@ const styles = StyleSheet.create({
   marginTop: 22
  },
  modalView: {
-  width: '80%',
-  height: '60%',
+  width: '90%',
+  height: '20%',
   margin: 20,
   backgroundColor: "#545252",
   opacity: 0.96,
@@ -321,7 +377,8 @@ const styles = StyleSheet.create({
   },
   shadowOpacity: 0.25,
   shadowRadius: 4,
-  elevation: 5
+  elevation: 5,
+  position: 'relative'
  },
  button: {
   borderRadius: 20,

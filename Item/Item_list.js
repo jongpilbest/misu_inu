@@ -35,22 +35,22 @@ const Item_list = ({ navigation }) => {
     }
     // 이름으로 했을때
     // 품목으로 했을때 
-
-    chek = mosv.filter(evlv => {
-      return evlv.name == el
-    })
-
-    console.log(chek);
-
-
-    if (chek == 0) {
+    /*
       chek = mosv.filter(evlv => {
-        return evlv.item == el
+        return evlv.name == el
       })
-    }
+  */
+    // console.log(chek);
 
-    console.log(chek)
+    /*
+if (chek == 0) {
+chek = mosv.filter(evlv => {
+  return evlv.item == el
+})
+}
 
+console.log(chek)
+*/
 
     if (chek.length > 0) {
       chekc = 11;

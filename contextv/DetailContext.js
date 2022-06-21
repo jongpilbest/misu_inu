@@ -106,9 +106,38 @@ const initialstate = function (state, action) {
         case 'delete_all': {
 
             var hey = state
-            console.log(hey)
+            // console.log(hey)
             return state = [];
         }
+        case 'create_arr': {
+            state = [];
+            state = action.arr;
+            console.log('???')
+            console.log(state)
+            return state;
+        }
+
+
+        case 'creat_index': {
+            var d = [];
+            console.log('도대체시발')
+            console.log(action.arr);
+
+
+            for (var i = 0; i < action.arr.length; i++) {
+                d.push(action.arr[i]);
+
+
+            }
+            console.log('d find');
+            console.log(d)
+            state = [];
+            state = d;
+
+
+
+        }
+
 
 
     }
@@ -207,6 +236,7 @@ const im_Si_item = (dispatch) => {
 }
 
 
+
 const tokevn = (dispatch) => {
 
 
@@ -271,6 +301,40 @@ const delete_all = (dispatch) => {
 
 }
 
+const create_arr = (dispatch) => {
 
 
-export const { Context, Provider } = BigContext(initialstate, { delete_all, tokevn, die, im_Si_item, add_nickname, put_state, set_state, add_password, add_component, add_id }, []);
+    return (arr) => {
+        console.log('?!미수')
+        console.log(arr)
+
+        dispatch({
+
+            type: 'create_arr',
+            arr: arr
+
+        })
+    }
+
+
+
+}
+const creat_index = (dispatch) => {
+
+
+    return (arr) => {
+
+        dispatch({
+
+            type: 'creat_index',
+            arr: arr
+
+        })
+    }
+
+
+
+}
+
+
+export const { Context, Provider } = BigContext(initialstate, { creat_index, delete_all, tokevn, die, im_Si_item, add_nickname, put_state, set_state, create_arr, add_password, add_component, add_id }, []);
