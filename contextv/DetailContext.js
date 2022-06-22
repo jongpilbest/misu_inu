@@ -120,8 +120,8 @@ const initialstate = function (state, action) {
 
         case 'creat_index': {
             var d = [];
-            console.log('도대체시발')
-            console.log(action.arr);
+           
+           
 
 
             for (var i = 0; i < action.arr.length; i++) {
