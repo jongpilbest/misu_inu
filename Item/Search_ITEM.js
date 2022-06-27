@@ -1,5 +1,5 @@
 
-
+import axios from "axios";
 import React, {
   useState, useContext, useEffect
 } from "react"
@@ -12,7 +12,7 @@ var index_array = [];
 const Search_ITEM = function ({ onfinsh }) {
   const { set_state } = useContext(Context);
   const { create_arr } = useContext(Context);
-  const { delete_all } = useContext(Context);
+  const { delete_all } = useContext(Context)
   const { creat_index } = useContext(Context);
   var state_state = (Context._currentValue.state);
   var array_lst = ['콘칩', '콘사', '변민호칩', '콘사사', '칩시', '칩구', '민호짱'];
@@ -37,9 +37,13 @@ const Search_ITEM = function ({ onfinsh }) {
     //console.log(com.length);
     if (com.length == 0) {
 
-      delete_all();
+      // delete_all();
       console.log('showshow')
+      console.log('시발 새키')
       console.log(state_state)
+
+
+
       new_A.length = 0;
       array_lst.forEach(element => {
         var ch = element.split('');
@@ -55,6 +59,7 @@ const Search_ITEM = function ({ onfinsh }) {
 
 
     }
+
     else if (el.length >= 1) {
       console.log('여기가 입니다만')
       console.log(el)
@@ -63,7 +68,7 @@ const Search_ITEM = function ({ onfinsh }) {
 
 
       console.log('정미수', state_state)
-      state_state.forEach((EV, index) => {
+      state_state.list.forEach((EV, index) => {
         console.log("정미수 최고요")
         console.log(el)
         var chec = el.length;
@@ -89,16 +94,9 @@ const Search_ITEM = function ({ onfinsh }) {
         console.log(state_state)
 
       }
-      /*
-      if (cc) {
-        delete_all();
-        create_arr(cc);
-        console.log(state_state)
-      }
-*/
+
 
     }
-
 
 
 
@@ -140,6 +138,33 @@ const Search_ITEM = function ({ onfinsh }) {
   }
 
   const namce = function () {
+    console.log('HI')
+    console.log(state_state.token);
+
+
+    axios.post("http://172.30.1.13:5000/product/search", {
+
+      "keyword": com
+
+
+    },
+      {
+        headers: {
+          'X-AUTH-TOKEN': ` ${state_state.token}`
+
+        }
+      }
+    ).then((response) => {
+      if (response) {
+        console.log(total_response)
+
+      }
+    }).catch((err) => {
+      console.log(err.message);
+
+    });
+
+
     // set_state(com);
     onfinsh(com);
   }
@@ -191,4 +216,3 @@ const style = StyleSheet.create({
 })
 
 export default Search_ITEM;
-

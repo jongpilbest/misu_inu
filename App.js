@@ -45,7 +45,6 @@ const navigator = createAppContainer(createBottomTabNavigator({
    Barcode: Barcode,
    Item_list: Item_list,
    Item_inner: Item_inner,
-
  }),
  signup: createStackNavigator({
    Edit: Edit,

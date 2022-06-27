@@ -21,7 +21,9 @@ const Item_list = ({ navigation }) => {
   const { im_Si_item } = useContext(Context);
   //var mosv = (Context._currentValue.state)
 
-
+  var state_state = (Context._currentValue.state);
+  console.log('변민호 ');
+  console.log(state_state)
   const check_most = function (el) {
 
     if (el == "") {

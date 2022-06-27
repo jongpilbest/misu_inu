@@ -7,8 +7,10 @@ import { Context } from '../contextv/DetailContext'
 
 
 const indexScreen = ({ navigation }) => {
-    const { delete_all } = useContext(Context);
-
+    // const { delete_all } = useContext(Context);
+    var state_state = (Context._currentValue.state);
+    console.log(`메인에서 봐구 `);
+    console.log(state_state)
     return (
         <View>
             <TouchableOpacity onPress={() => navigation.navigate('Edit')}>
@@ -35,7 +37,7 @@ const indexScreen = ({ navigation }) => {
             <TouchableOpacity onPress={() => {
                 console.log(Context._currentValue)
 
-                delete_all()
+
                 console.log(Context._currentValue)
             }}>
                 <Text style={{ fontSize: 40 }}>

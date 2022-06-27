@@ -173,7 +173,7 @@ const first = function ({ navigation }) {
 
 
     // var userId = Math.floor(Math.random() * 10);
-    const { add_component, add_id, die } = useContext(Context)
+    // const { add_component, add_id, die } = useContext(Context)
     const z = 1;
 
     const go_go_opacity = function () {
@@ -284,7 +284,7 @@ const first = function ({ navigation }) {
                         for (var i = 0; i < valuev.length; i++) {
 
                             // console.log(valuev[i])
-                            add_component(valuev[i]);
+                            // add_component(valuev[i]);
                             navigation.navigate('nickname');
 
                         }
@@ -304,7 +304,7 @@ const first = function ({ navigation }) {
                 for (var i = 0; i < valuev.length; i++) {
 
                     // console.log(valuev[i])
-                    add_component(valuev[i]);
+                    // add_component(valuev[i]);
                     navigation.navigate('nickname');
 
                 }

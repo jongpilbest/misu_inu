@@ -3,11 +3,11 @@ import React, { useState, useContext } from "react"
 import { View, TextInput, TouchableOpacity, Button, StyleSheet, Text } from "react-native"
 //simport '../assets/font' as Font from "expo-font";
 import { Context } from '../contextv/DetailContext'
-
+//import { Context2 } from '../contextv/DetailContext'
 const Edit = function ({ navigation }) {
     const [id, setid] = useState('');
-    const { tokevn } = useContext(Context);
-   // console.log(Context._currentValue.state);
+    const { signtoken } = useContext(Context);
+    // console.log(Context2._currentValue.state);
     // const { logicalWidth, logicalHeight } = Dimensions.get('window')
 
     const [password, setpassword] = useState('');
@@ -76,8 +76,11 @@ const Edit = function ({ navigation }) {
                 </TextInput>
                 <TouchableOpacity onPress={() => {
 
-                    tokevn(id, password)
-                    navigation.navigate('index')
+                    // tokevn(id, password)
+
+                    signtoken(id, password)
+
+                    // navigation.navigate('index')
                 }}
                 >
 
@@ -97,7 +100,7 @@ const Edit = function ({ navigation }) {
                         </Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('first')}>
+                <TouchableOpacity>
                     <Text style={style.bottmm}>
                         회원가입
                     </Text>

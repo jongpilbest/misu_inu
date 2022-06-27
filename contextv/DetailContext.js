@@ -1,8 +1,8 @@
 
 //import { Commands } from "react-native/Libraries/Components/RefreshControl/AndroidSwipeRefreshLayoutNativeComponent";
 import BigContext from "./BigContext";
-import { AsyncStorage } from 'react-native';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+//import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import axios from "axios";
 import React, { useState, useContext, useEffect } from "react"
@@ -22,26 +22,27 @@ const initialstate = function (state, action) {
             }]
 
         }
+        case 'good': {
+
+            console.log('Token 찾아보소');
+            console.log(action.token)
+
+            state.id = action.id;
+            state.password = action.password
+            state.token = action.token
+            console.log('전체 state');
+            console.log(state)
+            return state
+
+        }
+
         case 'die': {
             state.length = 0;
             console.log(state)
 
         }
 
-        case 'add_component':
-            {
-                console.log(action.item)
 
-                return [...state, {
-
-                    name: action.item.name,
-                    check: action.item.check,
-                    kr: action.item.kr
-
-                    //number: Math.floor(Math.random() * 999)
-                }]
-
-            }
         case 'add_id': {
 
             return [...state, {
@@ -107,12 +108,14 @@ const initialstate = function (state, action) {
 
             var hey = state
             // console.log(hey)
-            return state = [];
+            state.list = [];
+            return state;
+
         }
         case 'create_arr': {
-            state = [];
-            state = action.arr;
-            console.log('???')
+            //  state = [];
+            [...state, state.list = action.arr]
+            console.log('에러잡기 시발')
             console.log(state)
             return state;
         }
@@ -120,8 +123,8 @@ const initialstate = function (state, action) {
 
         case 'creat_index': {
             var d = [];
-           
-           
+
+
 
 
             for (var i = 0; i < action.arr.length; i++) {
@@ -197,6 +200,59 @@ const add_nickname = (dispatch) => {
     }
 
 }
+
+
+const signtoken = (dispatch) => {
+
+
+
+    return async (id, password) => {
+        var total_response = 0;
+
+
+        try {
+            axios.post("http://172.30.1.13:5000/auth/login", {
+
+                "userId": id,
+                "password": password
+
+
+            }).then((response) => {
+                if (response) {
+                    console.log('?? first');
+                    total_response = response.data.token
+                    console.log(total_response)
+
+                    //AsyncStorage.setItem('Token', total_response)
+                    dispatch({
+                        type: 'good',
+                        id: id,
+                        password: password,
+                        token: total_response
+
+
+                    })
+
+                }
+            }).catch((err) => {
+                console.log(err.message);
+
+            });
+
+        }
+        catch (err) {
+
+
+        }
+
+
+
+
+
+    }
+
+}
+
 const set_state = (dispatch) => {
 
     return (item) => {
@@ -337,4 +393,4 @@ const creat_index = (dispatch) => {
 }
 
 
-export const { Context, Provider } = BigContext(initialstate, { creat_index, delete_all, tokevn, die, im_Si_item, add_nickname, put_state, set_state, create_arr, add_password, add_component, add_id }, []);
+export const { Context, Provider } = BigContext(initialstate, { signtoken, creat_index, delete_all, tokevn, die, im_Si_item, add_nickname, put_state, set_state, create_arr, add_password, add_component, add_id }, []);
