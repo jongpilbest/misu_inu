@@ -20,6 +20,7 @@ const indexScreen = ({ navigation }) => {
 
 
             </TouchableOpacity>
+
             <TouchableOpacity onPress={() => navigation.navigate('Barcode')}>
                 <Text style={{ fontSize: 40 }}>
                     바코드

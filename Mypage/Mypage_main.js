@@ -268,6 +268,9 @@ const Mypage_main = function ({ navigation }) {
      </Text>
 
     </View>
+
+
+
     <View style={{
      backgroundColor: '#D2E6FF',
      height: '12%',
@@ -276,13 +279,17 @@ const Mypage_main = function ({ navigation }) {
      margin: 5,
      borderRadius: 10
     }}>
-     <Text style={{
-      margin: 10
+     <TouchableOpacity onPress={() => {
+      navigation.navigate('Change_State');
      }}>
-      상태 수정
-     </Text>
-
+      <Text style={{
+       margin: 10
+      }}>
+       상태 수정
+      </Text>
+     </TouchableOpacity>
     </View>
+
     <View style={{
      backgroundColor: '#D2E6FF',
      height: '12%',

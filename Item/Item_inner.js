@@ -4,7 +4,7 @@ import { View, Pressable, Image, Text, ScrollView, FlatList, Button, StyleSheet,
 import Modal from "react-native-modal";
 //import Animated from 'react-native-reanimated';
 import Allery_item from "./Allery_item";
-
+import { Feather } from '@expo/vector-icons';
 
 
 
@@ -12,9 +12,64 @@ var mapv = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '7', '7'];
 
 const Item_inner = ({ navigation }) => {
  const [modalVisible, setModalVisible] = useState(false);
+ var [num, setnum] = useState(0);
+ const onpress = () => setnum((pre) => pre + 1);
+ const goto = function () {
 
+  if (num == 2) {
+
+
+   // check_one(1, vale.name);   context 사용해서 여기에서 바꾸는 걸로 한다.
+   // 이때 check 를 바꿔야 하니 매개별수를 같이 넣어서 .. = 이름+ 매개변수 
+
+
+
+
+   setnum(0);
+   return (
+
+    '#D2D2D2'
+
+
+
+
+
+   )
+  }
+
+  else if (num == 1) {
+
+
+   return (
+    '#E44688'
+
+
+
+   )
+  }
+
+
+
+
+
+
+
+
+  else if (num == 0) {
+   //check_corrct(vale.name, 0);
+   return (
+
+
+    '#D2D2D2'
+
+
+
+
+   )
+  }
+ }
  const item_show = navigation.getParam('el');
- var image = (item_show.src)
+ //var image = (item_show.src)
 
  return (
   <View style={{ backgroundColor: 'white' }}>
@@ -28,13 +83,16 @@ const Item_inner = ({ navigation }) => {
     }}
    >
     <View style={styles.centeredView}>
+
      <View style={styles.modalView}>
       <View style={{
        flexDirection: 'row',
        alignItems: "center",
        justifyContent: 'center'
       }}>
+
        <Text style={styles.modalText}>상세정보</Text>
+       <Text style={{ fontSize: 40 }}>안녕</Text>
        <Pressable
         style={[styles.button, styles.buttonClose]}
         onPress={() => setModalVisible(!modalVisible)}
@@ -117,7 +175,7 @@ const Item_inner = ({ navigation }) => {
 
      }
     }>
-     {item_show.kr}
+     {/*item_show.kr*/}
     </Text>
     <Text style={
 
@@ -128,15 +186,16 @@ const Item_inner = ({ navigation }) => {
 
      }
     }>
-     {item_show.company}
+     {/*item_show.company*/}
     </Text>
+
     <Image style={{
      width: '50%',
      height: '56%',
      alignSelf: 'center',
 
     }}
-     source={image}>
+    >
 
     </Image>
 
@@ -149,11 +208,21 @@ const Item_inner = ({ navigation }) => {
      marginTop: 20,
 
     }}>
+     <TouchableOpacity onPress={() => {
+      onpress();
+
+     }}>
+      <Feather name="heart" size={40} color={
+       goto()
+      } />
+
+     </TouchableOpacity>
 
 
      <View style={{
       backgroundColor: 'pink'
      }}>
+
       <TouchableOpacity onPress={() => {
        { console.log('>') }
 
@@ -166,6 +235,7 @@ const Item_inner = ({ navigation }) => {
         textAlign: 'center'
 
        }}>상세정보</Text>
+
       </TouchableOpacity>
      </View>
 
@@ -201,10 +271,12 @@ const Item_inner = ({ navigation }) => {
        flexDirection: 'row',
        margin: 20
       }}>
-       {mapv.map((el, index) => {
-        return <Allery_item key={index
-        } show={el} ></Allery_item>
-       })}
+       {
+
+        mapv.map((el, index) => {
+         return <Allery_item key={index
+         } show={el} ></Allery_item>
+        })}
 
       </View>
 

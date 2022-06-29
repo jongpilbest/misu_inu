@@ -32,7 +32,9 @@
     "react-navigation-overlay": "^1.1.1",
     "react-navigation-stack": "^2.10.4",
     "react-navigation-tabs": "^2.11.2",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "react-native-screens": "~3.11.1",
+    "react-native-pager-view": "5.4.15"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
