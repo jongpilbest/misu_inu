@@ -11,11 +11,11 @@ import Modal from "react-native-modal";
 //import { TapGestureHandler } from "react-native-gesture-handler";
 
 
-
+import { createStackNavigator } from "react-navigation-stack";
 
 
 const Mypage_main = function ({ navigation }) {
-
+ 
 
  const [modalVisible, setModalVisible] = useState(false);
  const [imageUrl, setImageUrl] = useState('h');
@@ -89,7 +89,7 @@ const Mypage_main = function ({ navigation }) {
          width: 100,
          backgroundColor: '#7C7C7C',
          height: 30,
-         borderRadius: 20
+         //b//orderRadius: 20
         }}>
          <Text style={{
           fontSize: 20,
@@ -111,7 +111,7 @@ const Mypage_main = function ({ navigation }) {
          width: 100,
          backgroundColor: '#7C7C7C',
          height: 30,
-         borderRadius: 20,
+         //      borderRadius: 20,
          marginLeft: 40
         }}>
          <Text style={{
@@ -159,7 +159,7 @@ const Mypage_main = function ({ navigation }) {
       height: '85%',
       margin: 10,
       flexDirection: 'row',
-      borderRadius: 20
+      //   borderRadius: 20
 
 
      }}>
@@ -168,7 +168,7 @@ const Mypage_main = function ({ navigation }) {
        height: '70%',
        width: '60%',
        margin: 10,
-       borderRadius: 20
+       //    borderRadius: 20
       }}>
        <Text style={{
         fontSize: 20,
@@ -190,7 +190,7 @@ const Mypage_main = function ({ navigation }) {
         height: '70%',
         width: '25%',
         margin: 10,
-        borderRadius: '50%',
+        //     borderRadius: '50%',
         position: 'relative'
 
        }}>
@@ -201,7 +201,7 @@ const Mypage_main = function ({ navigation }) {
           margin: 0,
           padding: 0,
 
-          borderRadius: '50%',
+          //       borderRadius: '50%',
          }}
          source={{ uri: imageUrl }}
         />
@@ -218,7 +218,7 @@ const Mypage_main = function ({ navigation }) {
            backgroundColor: "#71A6E3",
            height: 30,
 
-           borderRadius: '50%'
+           //        borderRadius: '50%'
           }}>
 
           </View>
@@ -243,7 +243,7 @@ const Mypage_main = function ({ navigation }) {
      width: '95%',
      margin: 5,
      marginLeft: 10,
-     borderRadius: 10
+     //  borderRadius: 10
     }}>
      <Text style={{
       margin: 10
@@ -259,7 +259,7 @@ const Mypage_main = function ({ navigation }) {
      width: '95%',
      marginLeft: 10,
      margin: 5,
-     borderRadius: 10
+     //  borderRadius: 10
     }}>
      <Text style={{
       margin: 10
@@ -277,7 +277,7 @@ const Mypage_main = function ({ navigation }) {
      width: '95%',
      marginLeft: 10,
      margin: 5,
-     borderRadius: 10
+     //  borderRadius: 10
     }}>
      <TouchableOpacity onPress={() => {
       navigation.navigate('Change_State');
@@ -296,7 +296,7 @@ const Mypage_main = function ({ navigation }) {
      width: '95%',
      marginLeft: 10,
      margin: 5,
-     borderRadius: 10
+     //  borderRadius: 10
     }}>
      <Text style={{
       margin: 10
@@ -311,7 +311,7 @@ const Mypage_main = function ({ navigation }) {
      width: '95%',
      marginLeft: 10,
      margin: 5,
-     borderRadius: 10
+     //  borderRadius: 10
     }}>
      <Text style={{
       margin: 10
@@ -327,7 +327,7 @@ const Mypage_main = function ({ navigation }) {
      alignContent: 'center',
      alignSelf: 'center',
      margin: 10,
-     borderRadius: 10,
+     //  borderRadius: 10,
      justifyContent: 'center',
 
 
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
   backgroundColor: "#545252",
   opacity: 0.96,
 
-  borderRadius: 20,
+  //b//orderRadius: 20,
   padding: 35,
   //alignItems: "center",
   shadowColor: "#000",
@@ -388,7 +388,7 @@ const styles = StyleSheet.create({
   position: 'relative'
  },
  button: {
-  borderRadius: 20,
+  //orderRadius: 20,
   padding: 10,
   elevation: 2
  },

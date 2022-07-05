@@ -23,7 +23,7 @@ const nickname = function ({ navigation }) {
   const check_id = function () {
     console.log('?HI')
 
-    axios.post("http://220.86.187.246:5000/auth/checkNickname", {
+    axios.get(`http://192.168.15.137:5000/auth/checkNickname/${id}`, {
       nickname: id
     })
       .then((response) => {

@@ -3,12 +3,23 @@ import React, { useState, useContext, useEffect } from "react"
 import { View, ScrollView, TextInput, TouchableOpacity, Image, Button, StyleSheet, Text } from "react-native"
 import { Context } from "../../contextv/DetailContext"
 import Ms from "../../signup/Ms"
+import { LogBox } from "react-native";
 
+LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 import SeachBar from "../../signup/SearchBar"
 var chekc = -1;
 var chek = 0;
 import Componn from "../../signup/Componn"
 const Change_State = function ({ navigation }) {
+
+ console.log(navigation)
+ /*
+ useEffect(() => {
+  //navigation.navigate('Mypage_main')?.navigationoptions({ tabBarStyle: { display: "none" } })
+
+  return () => navigation.navigate('Mypage_main').navigationoptions({ tabBarStyle: { display: "none" } });
+ }, [navigation]);
+*/
 
  const [MS_good, misu] = Ms();
  var mos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -54,6 +65,11 @@ const Change_State = function ({ navigation }) {
   <View style={{
    backgroundColor: 'white'
   }}>
+   <Button onPress={() => {
+    navigation.navigate('Mypage_main')
+   }}>
+
+   </Button>
 
    <View style={{
     marginTop: '10%',
@@ -137,11 +153,7 @@ const Change_State = function ({ navigation }) {
 
  )
 }
-Change_State.navigationOptions = () => {
- return {
-  
- }
-}
+
 
 const styles = StyleSheet.create({
 

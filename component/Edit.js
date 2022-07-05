@@ -100,7 +100,9 @@ const Edit = function ({ navigation }) {
                         </Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('first')
+                }}>
                     <Text style={style.bottmm}>
                         회원가입
                     </Text>

@@ -1,8 +1,7 @@
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 //import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 //import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-
+import Componn from "./signup/Componn";
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from "react-navigation-stack";
@@ -16,12 +15,13 @@ import fifth from "./signup/fifth";
 import final from "./signup/fian";
 import ingredient from "./signup/ingredient";
 import nickname from "./signup/nickname";
-
+import Enroll_page from "./Enroll_page/Enroll";
 import Barcode from "./component/barCode";
 import Item_list from "./Item/Item_list";
 import Item_inner from "./Item/Item_inner";
 import Mypage_main from "./Mypage/Mypage_main";
 import Change_State from "./Mypage/Change_State.js/Change_state";
+
 
 const navigator = createSwitchNavigator(
 
@@ -32,10 +32,17 @@ const navigator = createSwitchNavigator(
         Barcode: Barcode,
         Item_list: Item_list,
         Item_inner: Item_inner,
-
-
+        first: first,
+        second: second,
+        nickname: nickname,
+        fifth: fifth,
+        ingredient: ingredient,
       }),
-      Item_inner: Item_inner,
+      Barcode: Barcode,
+      Enroll: createStackNavigator({
+        Enroll_page: Enroll_page,
+        Barcode: Barcode,
+      }),
       signup: createStackNavigator({
         Edit: Edit,
         first: first,
@@ -45,21 +52,15 @@ const navigator = createSwitchNavigator(
         nickname: nickname,
         ingredient: ingredient,
       }),
+      Mypage_main: createStackNavigator({
+        Mypage_main: Mypage_main,
 
-      Mypage_main: Mypage_main,
-
-
-
-
-
+      })
     }),
-    good: createMaterialTopTabNavigator({
-      Change_State: Change_State,
-      Change_State_2: Change_State_2
+    Change_State: Change_State
 
-    })
   }
-);
+)
 
 
 

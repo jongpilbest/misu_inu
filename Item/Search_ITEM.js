@@ -16,6 +16,52 @@ const Search_ITEM = function ({ onfinsh }) {
   const { creat_index } = useContext(Context);
   var state_state = (Context._currentValue.state);
   var array_lst = ['콘칩', '콘사', '변민호칩', '콘사사', '칩시', '칩구', '민호짱'];
+  var list_name = [];
+  var list_name_sansa = [];
+  /*
+  useEffect(() => {
+    //여기에 axios 개발
+    {
+      axios.get("http://172.30.1.13:5000/product/detail/name"
+
+
+
+      ).then((response) => {
+        if (response) {
+
+          list_name = response.data
+
+
+        }
+      }).catch((err) => {
+        console.log(err.message);
+        console.log('이름리스트 받을때 에러남요 ');
+
+      });
+      axios.get("http://172.30.1.13:5000/product/search"
+
+      ).then((response) => {
+        if (response) {
+
+          list_name_sansa = response.data
+
+        }
+      }).catch((err) => {
+        console.log(err.message);
+        console.log('상세 리스트  받을때 에러남요 ');
+
+      });
+
+
+      //정보다 보내줘야됨... 
+
+
+
+
+
+    },[])
+*/
+
   const [com, setcom] = useState("");
   const [count, setcount] = useState(1)
   var ar_length = array_lst.length;
@@ -106,7 +152,7 @@ const Search_ITEM = function ({ onfinsh }) {
      setcount(22);
      console.log(count)
     }
-  
+   
     //setcount(1)
     setcom(ele)
     arr_show();

@@ -42,7 +42,31 @@ const initialstate = function (state, action) {
 
         }
 
+        case 'delete_Barcode': {
 
+            var hey = state
+            // console.log(hey)
+            state.Barcode = [];
+            return state;
+
+        }
+        case 'create_Barcode': {
+            //  state = [];
+            var chekc = 0;
+
+            if (state.Barcode) {
+                chekc = state.Barcode;
+
+            }
+            else if (!state.Barcode) {
+                chekc = 1;
+            }
+
+            [...state, state.Barcode = [chekc, action.setbarcode]]
+            console.log('??')
+            console.log(state.Barcode);
+            return state;
+        }
         case 'add_id': {
 
             return [...state, {
@@ -115,31 +139,11 @@ const initialstate = function (state, action) {
         case 'create_arr': {
             //  state = [];
             [...state, state.list = action.arr]
-            console.log('에러잡기 시발')
+            console.log('에러잡기 ')
             console.log(state)
             return state;
         }
 
-
-        case 'creat_index': {
-            var d = [];
-
-
-
-
-            for (var i = 0; i < action.arr.length; i++) {
-                d.push(action.arr[i]);
-
-
-            }
-            console.log('d find');
-            console.log(d)
-            state = [];
-            state = d;
-
-
-
-        }
 
 
 
@@ -178,6 +182,8 @@ const add_id = (dispatch) => {
         })
 
     }
+
+
 
 }
 const add_password = (dispatch) => {
@@ -265,7 +271,34 @@ const set_state = (dispatch) => {
     }
 
 }
+const create_Barcode = (dispatch) => {
 
+    return (item) => {
+        dispatch({
+            type: 'create_Barcode',
+            setbarcode: item
+
+        })
+
+    }
+}
+
+const delete_Barcode = (dispatch) => {
+
+
+    return () => {
+
+        dispatch({
+
+            type: 'delete_Barcode',
+
+
+        })
+    }
+
+
+
+}
 const put_state = (dispatch) => {
 
     return () => {
@@ -375,22 +408,11 @@ const create_arr = (dispatch) => {
 
 
 }
-const creat_index = (dispatch) => {
-
-
-    return (arr) => {
-
-        dispatch({
-
-            type: 'creat_index',
-            arr: arr
-
-        })
-    }
 
 
 
-}
-
-
-export const { Context, Provider } = BigContext(initialstate, { signtoken, creat_index, delete_all, tokevn, die, im_Si_item, add_nickname, put_state, set_state, create_arr, add_password, add_component, add_id }, []);
+export const { Context, Provider } = BigContext(initialstate, {
+    create_Barcode,
+    delete_Barcode, signtoken, delete_all, tokevn, die, im_Si_item, add_nickname, put_state,
+    set_state, create_arr, add_password, add_component, add_id
+}, []);

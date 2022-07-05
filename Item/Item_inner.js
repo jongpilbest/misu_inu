@@ -13,7 +13,41 @@ var mapv = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '7', '7'];
 const Item_inner = ({ navigation }) => {
  const [modalVisible, setModalVisible] = useState(false);
  var [num, setnum] = useState(0);
- const onpress = () => setnum((pre) => pre + 1);
+  const onpress = () => {
+    
+    setnum((pre) => pre + 1)
+    if (num == 1) {
+          /*
+      axios.get(`http://220.86.187.246:5000/auth/checkNickname/${id}`, {
+        nickname: id
+      })
+        .then((response) => {
+          if (response) {
+            console.log('?');
+
+            console.log(response.data)
+            bol_check = response.data
+
+            //console.log(response.data);
+            //setUser(response);
+          } else {
+            alert("failed to ");
+          }
+        }).catch((err) => {
+          console.log(err.message);
+          console.log(err)
+          console.log('?');
+        });
+
+
+이게 선호 상품 보내는 axios인지 모르겠는데요 
+*/ 
+     }
+
+
+  }
+    
+    ;
  const goto = function () {
 
   if (num == 2) {

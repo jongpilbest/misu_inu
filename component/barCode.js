@@ -2,7 +2,7 @@
 //import { Camera, CameraType } from 'expo-camera';
 //import Icon from 'react-native-vector-icons/FontAweso
 import axios from "axios"
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import {
   Text, View, TouchableOpacity, Alert,
   Button,
@@ -11,19 +11,37 @@ import {
   Vibration,
 
 } from 'react-native';
-
+import { Context } from '../contextv/DetailContext'
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 const Barcode = () => {
+  var state_state = (Context._currentValue.state.Barcode);
+  var state_ = (Context._currentValue.state.Barcode);
   //const [scaned, setScaned] = useState(true);
   // const [hasPermission, setHasPermission] = useState(null);
   // const [type, setType] = useState(CameraType.back);
   const [hasPermission, setHasPermission] = useState(null);
+  const { create_Barcode, delete_Barcode } = useContext(Context);
   const [scanned, setScanned] = useState(false);
+
+  useEffect(() => {
+    console.log('GOOD')
+    console.log(state_state)
+
+  }, [])
+
+  useEffect(() => {
+    console.log('MISU')
+    console.log(state_state)
+
+  }, [state_state])
 
   //const myIcon = (<Icon name="rocket" size={30} color="black" />)
   useEffect(() => {
+
+    //delete_Barcode();
+
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === 'granted');
@@ -32,25 +50,27 @@ const Barcode = () => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
+    create_Barcode(data)
+    /*
+ axios.post("http://182.215.108.120:5000/product/detail", {
+   barcode: data
+ })
+   .then((response) => {
+     if (response) {
+       console.log('?? first');
+       console.log(response.data)
+       setcheck(response.data);
 
-    axios.post("http://182.215.108.120:5000/product/detail", {
-      barcode: data
-    })
-      .then((response) => {
-        if (response) {
-          console.log('?? first');
-          console.log(response.data)
-          setcheck(response.data);
-
-          //setUser(response);
-        } else {
-          alert("failed to ");
-        }
-      }).catch((err) => {
-        console.log(err.message);
-        console.log(err)
-        console.log('?');
-      });
+       //setUser(response);
+     } else {
+       alert("failed to ");
+     }
+   }).catch((err) => {
+     console.log(err.message);
+     console.log(err)
+     console.log('?');
+   });
+   */
     alert(`바코드 번호는 ${data} 입니다. `);
 
 

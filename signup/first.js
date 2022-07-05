@@ -201,24 +201,21 @@ const first = function ({ navigation }) {
     const check_id = function () {
 
 
-        axios.post("http://182.215.108.120:5000/auth/checkUserId", {
-            userId: id
-        })
-            .then((response) => {
-                if (response) {
-                    console.log('?? first');
-                    console.log(response.data)
-                    setcheck(response.data);
+        axios.get(`http://192.168.230.1:5000/auth/checkUserId/${id}`).then((response) => {
+            if (response) {
+                console.log('?? first');
+                console.log(response.data)
+                setcheck(response.data);
 
-                    //setUser(response);
-                } else {
-                    alert("failed to ");
-                }
-            }).catch((err) => {
-                console.log(err.message);
-                console.log(err)
-                console.log('?');
-            });
+                //setUser(response);
+            } else {
+                alert("failed to ");
+            }
+        }).catch((err) => {
+            console.log(err.message);
+            console.log(err)
+            console.log('?');
+        });
 
 
 
