@@ -10,6 +10,7 @@ var hey = -1;
 
 
 
+
 const Component_item = function ({ vale, touch }) {
  //console.log(`vale ${vale}`)
  var [num, setnum] = useState(0);

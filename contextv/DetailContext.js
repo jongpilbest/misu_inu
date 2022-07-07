@@ -52,19 +52,8 @@ const initialstate = function (state, action) {
         }
         case 'create_Barcode': {
             //  state = [];
-            var chekc = 0;
-
-            if (state.Barcode) {
-                chekc = state.Barcode;
-
-            }
-            else if (!state.Barcode) {
-                chekc = 1;
-            }
-
-            [...state, state.Barcode = [chekc, action.setbarcode]]
-            console.log('??')
-            console.log(state.Barcode);
+            // state.Barcode = [];
+            [...state, state.Barcode = action.setbarcode]
             return state;
         }
         case 'add_id': {
@@ -273,12 +262,15 @@ const set_state = (dispatch) => {
 }
 const create_Barcode = (dispatch) => {
 
-    return (item) => {
+    return (item, callback) => {
         dispatch({
             type: 'create_Barcode',
             setbarcode: item
 
         })
+        if (callback) {
+            callback();
+        }
 
     }
 }

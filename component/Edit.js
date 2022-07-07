@@ -119,6 +119,7 @@ const Edit = function ({ navigation }) {
 
     )
 }
+Edit.navigationsetOptions({ tabBarStyle: { display: 'none' } })
 
 const style = StyleSheet.create({
     border: {

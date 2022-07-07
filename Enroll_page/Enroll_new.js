@@ -4,16 +4,18 @@ import { View, Image, TextInput, TouchableOpacity, Button, StyleSheet, Text, Vie
 import * as ImagePicker from 'expo-image-picker';
 import { Pressable } from 'react-native';
 import Modal from "react-native-modal";
+import RNPickerSelect from 'react-native-picker-select';
 
 import { Context } from "../contextv/DetailContext";
 import { hydrate } from "react-dom";
 //import Barcode from "../component/barCode";
 var check = 1;
+var hangul = '아라'
+const Enroll_new = ({ navigation, misu, hey }) => {
 
 
-const Enroll_new = ({ navigation, misu }) => {
- var state_state = (Context._currentValue.state.Barcode);
  const [modalVisible, setModalVisible] = useState(false);
+ const [heyvalue, setvalue] = useState('')
  const [imageUrl, setImageUrl] = useState('h');
  // 권한 요청을 위한 hooks
  const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
@@ -43,22 +45,28 @@ const Enroll_new = ({ navigation, misu }) => {
 
   setImageUrl(result.uri);
  };
+ const checkmisu = function () {
 
-
- const goto_Text = function () {
-
-  if (check == 1) {
+  if (!hey) {
+   return '바코드'
+  }
+  else if (hey) {
    return;
+  }
+ }
 
+ const full_of = function () {
+  if (id && imageUrl && heyvalue && hey) {
+
+   console.log('다 채움요')
+  }
+  else if (!id || !imageUrl || !heyvalue || !hey) {
+   console.log('비어잇는듯')
+   check = '채워주세요!'
+   return check
 
   }
-  else if (check == 2) {
-   check = 1;
-   return Barcode_name;
 
-
-
-  }
 
  }
 
@@ -66,11 +74,13 @@ const Enroll_new = ({ navigation, misu }) => {
 
   <View style={{
    flexDirection: 'row',
+   width: '95%',
    height: 200,
    backgroundColor: '#D2D2D2',
-   margin: 10,
-   flexDirection: 'column'
-
+   marginTop: '10%',
+   flexDirection: 'column',
+   borderRadius: 20,
+   marginLeft: 10
 
   }}>
    <View style={{
@@ -79,7 +89,8 @@ const Enroll_new = ({ navigation, misu }) => {
     alignContent: 'center',
     margin: 20,
     backgroundColor: 'white',
-    borderRadius: 20
+    borderRadius: 20,
+
    }}>
 
 
@@ -137,43 +148,92 @@ const Enroll_new = ({ navigation, misu }) => {
      left: 180,
      backgroundColor: 'white',
      borderRadius: 20,
-     margin: 0
+     margin: 0,
+     padding: 0
 
     }}>
+     <RNPickerSelect
+      onValueChange={(value) => {
 
-    </View>
-    <TouchableOpacity onPress={() => {
-     misu();
-    }}>
-     <View style={{
-      width: 150,
-      height: 40,
-      position: 'absolute',
-      left: 180,
-      top: 40,
-
-      backgroundColor: 'pink',
-      borderRadius: 20
-
+       setvalue(value);
+       console.log(value)
+      }}
+      items={[
+       { label: 'Football', value: 'football' },
+       { label: 'Baseball', value: 'baseball' },
+       { label: 'Hockey', value: 'hockey' },
+      ]}
+     />
+     <TouchableOpacity onPress={() => {
+      misu();
      }}>
+      <View style={{
+       width: 150,
+       height: 40,
+       marginTop: 50,
+       //position: 'absolute',
+       //left: 180,
+       //top: 0,
 
-      <View>
-       <Text>{state_state}</Text>
+
+       backgroundColor: 'white',
+       borderRadius: 20
+
+      }}>
+
+       <View>
+        <Text style={{
+         color: '#B9B9B9',
+         marginTop: 10,
+         marginLeft: 20,
+         // textAlign: 'center'
+        }}>{checkmisu()}</Text>
+
+        <Text>{hey}</Text>
+       </View>
+
+
       </View>
 
+     </TouchableOpacity>
 
-     </View>
-
-    </TouchableOpacity>
-
-   </View >
-   <View>
-    <View>
-     <Text>
-      {goto_Text()}
-     </Text>
     </View>
 
+
+   </View >
+
+   <View style={{
+
+   }}>
+    <Text style={{
+     fontSize: 18,
+     marginLeft: 20,
+     color: '#7C7C7C',
+     marginTop: 30,
+     fontWeight: 'bold',
+    }}>{full_of()}</Text>
+    <TouchableOpacity onPress={() => {
+     full_of();
+    }}>
+     <View style={{
+      borderRadius: 20,
+      width: '70%',
+      height: 40,
+      margin: 60,
+      backgroundColor: '#D2E6FF'
+     }}>
+      <Text style={{
+       fontSize: 20,
+       alignSelf: "center",
+       color: '#7C7C7C',
+       position: 'absolute',
+       fontWeight: 'bold',
+
+       marginTop: '5%',
+      }}>추가하기</Text>
+
+     </View>
+    </TouchableOpacity>
    </View>
   </View >
 

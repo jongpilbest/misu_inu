@@ -10,7 +10,12 @@ var check = 1;
 var new_enroll = [1];
 
 const Enroll_page = function ({ navigation }) {
+ //var state_state = (Context._currentValue.state.Barcode);
+ const item_show = navigation.getParam('data');
+ console.log('??????');
+ console.log(item_show)
 
+ //console.log(state_state)
  useEffect(() => {
   new_enroll.length = 1;
  }, [])
@@ -33,16 +38,19 @@ const Enroll_page = function ({ navigation }) {
 
  }
  const goto_barcode = function () {
-  console.log('hey')
+  //console.log('hey')
   navigation.navigate('Barcode')
  }
  return (
 
-  <View >
+  <View style={{
+   backgroundColor: 'white',
+   height: '100%'
+  }}>
 
    <View style={{
     backgroundColor: '#D2E6FF',
-    height: 200
+    height: 220
     //eight: '35%'
    }}>
     <Text style={{
@@ -59,9 +67,9 @@ const Enroll_page = function ({ navigation }) {
     height: '40%',
     width: '100%'
    }}>
-    {new_enroll.map((el, index) => {
-     return <Enroll_new misu={() => goto_barcode()} key={index}></Enroll_new>
-    })}
+
+    <Enroll_new misu={() => goto_barcode()} hey={item_show}></Enroll_new>
+
 
    </View>
    <View style={{
@@ -75,35 +83,8 @@ const Enroll_page = function ({ navigation }) {
 
 
    </View>
-   <View style={{
 
-   }}>
-    <TouchableOpacity onPress={() => {
-     new_enroll.push('0');
-    }}>
-     <View style={{
-      borderRadius: 20,
-      width: '70%',
-      height: 40,
-      margin: 90,
-      backgroundColor: '#D2E6FF'
-     }}>
 
-     </View>
-    </TouchableOpacity>
-   </View>
-   <TouchableOpacity onPress={() => {
-    //여기에다가 모듈 넣어서 추가 완료 됬씁니다. 모듈 띄우기 
-
-   }}>
-
-    <View>
-     {
-      /*<Text style={fill_in()}>채워주세요</Text>*/
-     }
-
-    </View>
-   </TouchableOpacity>
   </View>
 
  )

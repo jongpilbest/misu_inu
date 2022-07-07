@@ -15,9 +15,9 @@ import { Context } from '../contextv/DetailContext'
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-const Barcode = () => {
-  var state_state = (Context._currentValue.state.Barcode);
-  var state_ = (Context._currentValue.state.Barcode);
+const Barcode = ({ navigation }) => {
+  // var state_state = (Context._currentValue.state.Barcode);
+  //var state_ = (Context._currentValue.state.Barcode);
   //const [scaned, setScaned] = useState(true);
   // const [hasPermission, setHasPermission] = useState(null);
   // const [type, setType] = useState(CameraType.back);
@@ -25,17 +25,7 @@ const Barcode = () => {
   const { create_Barcode, delete_Barcode } = useContext(Context);
   const [scanned, setScanned] = useState(false);
 
-  useEffect(() => {
-    console.log('GOOD')
-    console.log(state_state)
 
-  }, [])
-
-  useEffect(() => {
-    console.log('MISU')
-    console.log(state_state)
-
-  }, [state_state])
 
   //const myIcon = (<Icon name="rocket" size={30} color="black" />)
   useEffect(() => {
@@ -50,7 +40,8 @@ const Barcode = () => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    create_Barcode(data)
+    navigation.navigate('Enroll_page', { data: data })
+    //create_Barcode(data, () => navigation.pop())
     /*
  axios.post("http://182.215.108.120:5000/product/detail", {
    barcode: data
